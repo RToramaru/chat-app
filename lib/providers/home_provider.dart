@@ -1,3 +1,4 @@
+import 'package:chat_app/allConstants/all_constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeProvider {
