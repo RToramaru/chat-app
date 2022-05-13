@@ -1,7 +1,10 @@
-import 'package:chat_app/providers/auth_provider.dart';
+import 'package:chat_app/allConstants/all_constants.dart';
+import 'package:chat_app/pages/home_page.dart';
+import 'package:chat_app/providers/autor_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,9 +16,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final autorProvider = Provider.of<AutorProvider>(context);
 
-    switch (authProvider.status) {
+    switch (autorProvider.status) {
       case Status.erroAutenticacao:
         Fluttertoast.showToast(msg: 'Falha no login');
         break;
@@ -23,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
         Fluttertoast.showToast(msg: 'Login cancelado');
         break;
       case Status.autenticado:
-        Fluttertoast.showToast(msg: 'Login realizado com sucesso');
+        Fluttertoast.showToast(msg: 'Logado com sucesso');
         break;
       default:
         break;
@@ -41,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               vertical50,
               const Text(
-                'Welcome to Smart Talk',
+                'Bem Vindo',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: Sizes.dimen_26,
@@ -50,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               vertical30,
               const Text(
-                'Login to continue',
+                'Faça login para continuar',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: Sizes.dimen_22,
@@ -58,24 +61,29 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               vertical50,
-              Center(child: Image.asset('assets/images/back.png')),
+              Center(child: Image.asset('assets/images/papel_de_parede.png')),
               vertical50,
-              GestureDetector(
-                onTap: () async {
-                  bool isSuccess = await authProvider.handleGoogleSignIn();
-                  if (isSuccess) {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()));
-                  }
-                },
-                child: Image.asset('assets/images/google_login.jpg'),
+              SizedBox(
+                height: Sizes.dimen_50,
+                child: SignInButton(
+                  Buttons.Google,
+                  text: "Acessar com o Google",
+                  onPressed: () async {
+                    bool isSuccess = await autorProvider.handleGoogleSignIn();
+                    if (isSuccess) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    }
+                  },
+                ),
               ),
+              
             ],
           ),
           Center(
-            child: authProvider.status == Status.authenticating
+            child: autorProvider.status == Status.autenticando
                 ? const CircularProgressIndicator(
                     color: AppColors.lightGrey,
                   )
