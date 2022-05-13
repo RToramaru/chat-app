@@ -1,16 +1,30 @@
-# chat_app
+# Chat App
 
-A new Flutter project.
 
-## Getting Started
+Chat App é um aplicativo de bate papo simples, desenvolvido em Flutter com integração ao FireBase.
 
-This project is a starting point for a Flutter application.
+O aplicativo contém as seguintes funcionalidades:
 
-A few resources to get you started if this is your first Flutter project:
+- Autenticação de login pelo Google via Firebase
+- Bate papo com todos os usuários conectados no aplicativo
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Instalação
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Para instalação primeiramente clone o repositório local, em seguida abra o diretório salvo e instale as dependências.
+
+```sh
+git clone https://github.com/RToramaru/chat-app
+cd chat-app
+flutter pub get
+```
+
+Após feito isso será necessário integração do projeto no firebase e ativar a opção de login via Google.
+Para facilitar utilize o firebase cli com os seguintes comandos:
+
+```sh
+npm install -g firebase-tools  
+dart pub global activate flutterfire_cli
+cd chat-app
+flutterfire configure
+```
+E selecione o projeto firebase para se usar.
