@@ -28,3 +28,8 @@ cd chat-app
 flutterfire configure
 ```
 E selecione o projeto firebase para se usar.
+
+
+## Demonstração
+
+![](https://github.com/RToramaru/clima-app/blob/main/screen/demonstracao.gif)
