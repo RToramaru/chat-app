@@ -32,4 +32,7 @@ E selecione o projeto firebase para se usar.
 
 ## Demonstração
 
-![](/screen/demonstracao.gif)
+![](/screens/1.png)
+![](/screens/2.png)
+![](/screens/3.png)
+![](/screens/demonstracao.gif)
